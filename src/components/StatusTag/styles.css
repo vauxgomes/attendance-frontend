@@ -1,0 +1,53 @@
+.badge {
+  text-transform: capitalize;
+
+  background: var(--badge-bg);
+  color: var(--badge-text);
+}
+
+.badge::before {
+  content: '';
+  display: inline-block;
+
+  height: 8px;
+  width: 8px;
+  margin-right: 0.4em;
+
+  background: var(--badge-text);
+  border-radius: 50%;
+}
+
+.badge-success {
+  --badge-text: var(--success-text);
+  --badge-bg: var(--success-bg);
+}
+
+.badge-warning {
+  --badge-text: var(--warning-text);
+  --badge-bg: var(--warning-bg);
+}
+
+.badge-danger {
+  --badge-text: var(--danger-text);
+  --badge-bg: var(--danger-bg);
+}
+
+.badge-warning {
+  --badge-text: var(--warning-text);
+  --badge-bg: var(--warning-bg);
+}
+
+.badge-info {
+  --badge-text: var(--info-text);
+  --badge-bg: var(--info-bg);
+}
+
+.badge-active {
+  --badge-text: var(--active-text);
+  --badge-bg: var(--active-bg);
+}
+
+.badge-inactive {
+  --badge-text: var(--inactive-text);
+  --badge-bg: var(--inactive-bg);
+}

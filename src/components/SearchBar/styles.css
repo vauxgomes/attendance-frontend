@@ -1,0 +1,17 @@
+.searchbar {
+  display: grid;
+  grid-template-columns: min-content auto;
+  align-items: center;
+  gap: 0.5em;
+
+  color: var(--bs-secondary);
+  padding: 0.5em 0.75em;
+  background: var(--bg-light);
+  border-radius: 4px;
+}
+
+.searchbar input {
+  border: none;
+  background: none;
+  outline: none;
+}

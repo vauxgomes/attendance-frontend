@@ -3,7 +3,7 @@ import './styles.css'
 export default function Topbar() {
   return (
     <header>
-      <div className="container-fluid pe-0" id="topbar">
+      <div className="container pe-0" id="topbar">
         <img src="/img/logo-arrow.svg" className="logo" />
 
         <ul>
