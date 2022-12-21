@@ -2,17 +2,19 @@
   position: relative;
   top: 0;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5em;
-
-  /* padding: 0.75em 1em; */
-
   color: var(--bs-secondary);
   background: var(--bg-dark);
   border-bottom: 1px solid var(--border-color);
   /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+}
+
+#topbar .topbar {
+  position: relative;
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5em;
 }
 
 #topbar img.logo {
