@@ -2,7 +2,7 @@ import './styles.css'
 
 import { useState } from 'react'
 
-export default function SearchBar({ className }: { className?: string }) {
+export default function SearchBar({ className }) {
   const [search, setSearch] = useState('')
 
   return (

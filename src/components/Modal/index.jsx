@@ -1,6 +1,6 @@
 import './styles.css'
 
-export default function Modal(props?: any) {
+export default function Modal(props) {
   return (
     <div className={`modal-container ${props.show && 'show'}`}>
       <div className="container">

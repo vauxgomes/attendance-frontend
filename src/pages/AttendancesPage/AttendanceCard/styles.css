@@ -1,0 +1,13 @@
+.attendance-card {
+  padding: 1em;
+}
+
+.attended {
+  color: var(--success-text);
+  background: var(--success-bg);
+}
+
+.missed {
+  color: var(--danger-text);
+  background: var(--danger-bg);
+}

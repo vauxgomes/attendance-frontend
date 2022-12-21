@@ -1,0 +1,50 @@
+.swipeable-container {
+  display: flex;
+  overflow: auto;
+  overflow-x: scroll;
+
+  background: white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 4px;
+
+  scroll-snap-type: x mandatory;
+}
+
+.swipeable-container::-webkit-scrollbar {
+  display: none;
+}
+
+.swipeable {
+  min-width: 100%;
+  border-radius: 4px;
+  scroll-snap-align: start;
+
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  z-index: 100;
+}
+
+.action {
+  min-width: 100%;
+  padding: 1em;
+
+  display: flex;
+  align-items: center;
+}
+
+.action.left {
+  background: var(--success-text);
+  color: #fff;/* var(--success-bg);*/
+}
+
+.action.right {
+  background: var(--danger-bg-secondary);
+  color: #fff;/* var(--danger-bg);*/
+}
+
+.action i {
+  position: sticky;
+  left: 16px;
+  right: 16px;
+
+  font-size: 1.5em;
+}
