@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import './styles.css'
 
 export default function Topbar() {
@@ -8,65 +9,93 @@ export default function Topbar() {
 
         <ul>
           <li>
-            <a href="#">Attendances</a>
+            <NavLink to="/attendances">Attendances</NavLink>
           </li>
           <li>
-            <a href="#">
+            <NavLink>
               <i className="bx bxs-cog"></i>
-            </a>
+            </NavLink>
 
             {/* Dropdown menu */}
             <ul>
-              <li className="d-flex gap-2 align-items-start">
-                <i className="bx bxs-user py-1"></i>
-                <div className="d-flex flex-column">
-                  <a href="#">Users</a>
-                  <small className="d-none d-sm-block">Users management</small>
-                </div>
+              <li>
+                <NavLink to="/users" className="d-flex gap-2 align-items-start">
+                  <i className="bx bxs-user text-secondary py-1"></i>
+                  <div className="d-flex flex-column">
+                    <span>Users</span>
+                    <small className="d-none d-sm-block text-secondary">
+                      Users management
+                    </small>
+                  </div>
+                </NavLink>
               </li>
-              <li className="d-flex gap-2 align-items-start">
-                <i className="bx bxs-graduation py-1"></i>
-                <div className="d-flex flex-column">
-                  <a href="#">Courses</a>
-                  <small className="d-none d-sm-block">
-                    Courses management
-                  </small>
-                </div>
+              <li>
+                <NavLink
+                  to="/courses"
+                  className="d-flex gap-2 align-items-start"
+                >
+                  <i className="bx bxs-graduation text-secondary py-1"></i>
+                  <div className="d-flex flex-column">
+                    <span>Courses</span>
+                    <small className="d-none d-sm-block text-secondary">
+                      Courses management
+                    </small>
+                  </div>
+                </NavLink>
               </li>
-              <li className="d-flex gap-2 align-items-start">
-                <i className="bx bx-book-bookmark py-1"></i>
-                <div className="d-flex flex-column">
-                  <a href="#">Subjects</a>
-                  <small className="d-none d-sm-block">
-                    Subjects management
-                  </small>
-                </div>
+              <li>
+                <NavLink
+                  to="/subjects"
+                  className="d-flex gap-2 align-items-start"
+                >
+                  <i className="bx bx-book-bookmark text-secondary py-1"></i>
+                  <div className="d-flex flex-column">
+                    <span>Subjects</span>
+                    <small className="d-none d-sm-block text-secondary">
+                      Subjects management
+                    </small>
+                  </div>
+                </NavLink>
               </li>
-              <li className="d-flex gap-2 align-items-start">
-                <i className="bx bx-group py-1"></i>
-                <div className="d-flex flex-column">
-                  <a href="#">Students</a>
-                  <small className="d-none d-sm-block">
-                    Students management
-                  </small>
-                </div>
+              <li>
+                <NavLink
+                  to="/students"
+                  className="d-flex gap-2 align-items-start"
+                >
+                  <i className="bx bx-group text-secondary py-1"></i>
+                  <div className="d-flex flex-column">
+                    <span>Students</span>
+                    <small className="d-none d-sm-block text-secondary">
+                      Students management
+                    </small>
+                  </div>
+                </NavLink>
               </li>
-              <li className="d-flex gap-2 align-items-start">
-                <i className="bx bxs-chalkboard py-1"></i>
-                <div className="d-flex flex-column">
-                  <a href="#">Classes</a>
-                  <small className="d-none d-sm-block">
-                    Classes management
-                  </small>
-                </div>
+              <li>
+                <NavLink
+                  to="/classes"
+                  className="d-flex gap-2 align-items-start"
+                >
+                  <i className="bx bxs-chalkboard text-secondary py-1"></i>
+                  <div className="d-flex flex-column">
+                    <span>Classes</span>
+                    <small className="d-none d-sm-block text-secondary">
+                      Classes management
+                    </small>
+                  </div>
+                </NavLink>
               </li>
 
-              <li className="d-flex gap-2 align-items-start">
-                <i className="bx bx-exit py-1"></i>
-                <div className="d-flex flex-column">
-                  <a href="#">Logout</a>
-                  <small className="d-none d-sm-block">See you soon</small>
-                </div>
+              <li>
+                <NavLink to="/" className="d-flex gap-2 align-items-start">
+                  <i className="bx bx-exit text-secondary py-1"></i>
+                  <div className="d-flex flex-column">
+                    <span>Logout</span>
+                    <small className="d-none d-sm-block text-secondary">
+                      See you soon
+                    </small>
+                  </div>
+                </NavLink>
               </li>
             </ul>
           </li>
