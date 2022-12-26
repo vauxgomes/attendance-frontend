@@ -1,7 +1,11 @@
+import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
+import { Context } from '../../providers/contexts/context'
 import './styles.css'
 
 export default function Topbar() {
+  const { handleLogout } = useContext(Context)
+
   return (
     <header id="topbar">
       <div className="topbar container">
@@ -87,7 +91,11 @@ export default function Topbar() {
               </li>
 
               <li>
-                <NavLink to="/" className="d-flex gap-2 align-items-start">
+                <NavLink
+                  to="/"
+                  className="d-flex gap-2 align-items-start"
+                  onClick={() => handleLogout()}
+                >
                   <i className="bx bx-exit text-secondary py-1"></i>
                   <div className="d-flex flex-column">
                     <span>Logout</span>

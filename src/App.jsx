@@ -1,18 +1,19 @@
 import './App.css'
 
-import React, { useState } from 'react'
-
-import Topbar from './components/Topbar'
-import UsersPage from './pages/UsersPage'
-import AttendancesPage from './pages/AttendancesPage'
-import LoginPage from './pages/LoginPage'
+import React, { useContext, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
+import Topbar from './components/Topbar'
+import AttendancesPage from './pages/AttendancesPage'
+import LoginPage from './pages/LoginPage'
+import UsersPage from './pages/UsersPage'
+import ContextProvider, { Context } from './providers/contexts/context'
+
 function Organizer() {
-  const [token, setToken] = useState(' ')
+  const { token } = useContext(Context)
 
   if (!token) {
-    return <LoginPage setToken={setToken} />
+    return <LoginPage />
   }
 
   return (
@@ -33,10 +34,12 @@ function Organizer() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="*" element={<Organizer />} />
-      </Routes>
-    </BrowserRouter>
+    <ContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="*" element={<Organizer />} />
+        </Routes>
+      </BrowserRouter>
+    </ContextProvider>
   )
 }
