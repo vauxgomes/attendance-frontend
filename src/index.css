@@ -3,7 +3,7 @@
     --bg-light: #f5f5f6;
 
     --bg-dark: #0e1420;
-    --bg-dark-secondary: #101727;
+    --bg-dark-secondary: #213357;
 
     --success-text: #188754;
     --success-bg: #e8f3ed;
@@ -39,9 +39,7 @@ body {
 
     color: var(--bs-secondary);
     /* font-size: small; */
-    font-weight: 400;
 
-    border-bottom: none;
     background: var(--bg-light);
 }
 

@@ -20,6 +20,7 @@ class API {
   }
 
   /** Utils */
+
   params(params) {
     return Object.entries(params)
       .filter((p) => p[1])
@@ -59,7 +60,7 @@ class API {
   }
 
   async deleteUser(id) {
-    const response = await this.api.put(`/users/${id}/delete`, this.config)
+    const response = await this.api.delete(`/users/${id}/delete`, this.config)
     return response.data
   }
 

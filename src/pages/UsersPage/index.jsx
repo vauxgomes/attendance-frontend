@@ -1,37 +1,89 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useReducer, useState } from 'react'
+import Header from '../../components/Header'
+
 import Modal from '../../components/Modal'
-
-import SearchBar from '../../components/SearchBar'
-import StatusTag from '../../components/StatusTag'
-
-const data = [
-  {
-    username: 'root',
-    status: 'ACTIVE',
-    permission: 'ROOT'
-  },
-  {
-    username: 'admin',
-    status: 'INACTIVE',
-    permission: 'ADMINISTRATOR'
-  },
-  {
-    username: 'professor',
-    status: 'ACTIVE',
-    permission: 'USER'
-  }
-]
+import { Context } from '../../providers/contexts/context'
+import api from '../../providers/services/api'
+import formReducer from '../../utils/forms'
+import UserForm from './components/UserForm'
+import UsersTable from './components/UsersTable'
 
 export default function UsersPage() {
+  const { token } = useContext(Context)
+  const [formData, setFormData] = useReducer(formReducer)
+
   const [show, setShow] = useState(false)
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    if (!token) {
+      return
+    }
+
+    api
+      .token(token)
+      .getUsers()
+      .then((response) => setUsers(response))
+  }, [token])
+
+  const handleLoadForm = (data) => {
+    setFormData({ reset: true, states: { ...data } })
+    setShow(true)
+  }
+
+  const handleResetForm = () => {
+    setFormData({ reset: true })
+  }
+
+  const handleSubmitForm = (e) => {
+    e.preventDefault()
+
+    if (formData.id) {
+      api
+        .putUser(formData.id, formData)
+        .then((response) => {
+          const idx = users.findIndex((i) => i.id === formData.id)
+          const copy = [...users]
+          copy[idx] = formData
+
+          setUsers(copy)
+        })
+        .finally(() => {
+          handleResetForm()
+          setShow(false)
+        })
+    } else {
+      api
+        .postUser(formData)
+        .then((response) => {
+          formData.id = response.id
+          setUsers((prev) => [formData, ...prev])
+        })
+        .finally(() => {
+          handleResetForm()
+          setShow(false)
+        })
+    }
+  }
+
+  const handleRemoveInstance = ({ id }) => {
+    if (!id) {
+      return
+    }
+
+    api.deleteUser(id).then((response) => {
+      if (!response.success) {
+        return
+      }
+
+      setUsers((prev) => prev.filter((i) => i.id !== id))
+    })
+  }
 
   return (
     <React.Fragment>
-      <header className="d-flex align-items-center justify-content-between gap-2 mb-3">
-        <div>
-          <h2 className="fs-1 mb-0">Users</h2>
-          <p className="text-muted small">Manage users and permissions</p>
-        </div>
+      {/* Header */}
+      <Header title="Users" subtitle="Manage users and permissions">
         <button
           className="btn btn-sm btn-primary d-flex align-items-center gap-1"
           onClick={() => setShow(true)}
@@ -39,97 +91,28 @@ export default function UsersPage() {
           <small>New</small>
           <i className="bx bxs-plus-square"></i>
         </button>
-      </header>
+      </Header>
 
-      <SearchBar className="mb-5" />
+      {/* Table */}
+      <UsersTable
+        users={users}
+        handleLoadForm={handleLoadForm}
+        handleRemoveInstance={handleRemoveInstance}
+      />
 
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th></th>
-            <th>User</th>
-            <th>Status</th>
-            <th>Permission</th>
-            <th></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {data.map((user, key) => (
-            <tr key={key}>
-              <td></td>
-              <td>{user.username}</td>
-              <td>
-                <StatusTag status={user.status} />
-              </td>
-              <td className="text-capitalize">
-                {user.permission.toLowerCase()}
-              </td>
-              <td>
-                <i className="bx bx-dots-horizontal-rounded"></i>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      <Modal show={show} handleClose={() => setShow(false)}>
-        <h5 className="mb-0">User Information</h5>
-        <p className="small text-secondary">Fill the necessary information</p>
-
-        <form className="row">
-          {/* Username */}
-          <div className="col-12 mb-3">
-            <label htmlFor="username" className="form-label">
-              Username
-            </label>
-            <input
-              id="username"
-              name="username"
-              className="form-control"
-              type="text"
-              required={true}
-            />
-          </div>
-
-          <div className="col-12 col-md-6 mb-3">
-            <label htmlFor="status" className="form-label">
-              Status
-            </label>
-            <select
-              id="status"
-              name="status"
-              className="form-select"
-              disabled={true}
-              required={true}
-            >
-              <option value="ACTIVE">Active</option>
-              <option value="INACTIVE">Inactive</option>
-            </select>
-          </div>
-
-          <div className="col-12 col-md-6 mb-3">
-            <label htmlFor="permission" className="form-label">
-              Permission
-            </label>
-            <select
-              id="status"
-              name="status"
-              className="form-select"
-              required={true}
-            >
-              <option value="ROOT">Root</option>
-              <option value="ADMIN">Administrator</option>
-              <option value="USER">Professor</option>
-            </select>
-          </div>
-
-          <div className="col-12 mt-3">
-            <button className="btn btn-primary" type="submit">
-              Save
-            </button>
-          </div>
-        </form>
+      {/* Modal:Form */}
+      <Modal
+        show={show}
+        handleClose={() => {
+          handleResetForm()
+          setShow(false)
+        }}
+      >
+        <UserForm
+          formData={formData}
+          setFormData={setFormData}
+          handleSubmit={handleSubmitForm}
+        />
       </Modal>
     </React.Fragment>
   )

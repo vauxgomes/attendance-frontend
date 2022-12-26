@@ -1,14 +1,14 @@
 import './styles.css'
 
-export default function Modal(props) {
+export default function Modal({ children, show, handleClose }) {
   return (
-    <div className={`modal-container ${props.show && 'show'}`}>
+    <div className={`modal-container ${show && 'show'}`}>
       <div className="container">
         <div className="modal-content">
-          <div className="close-button" onClick={props.handleClose}>
-            <i className="bx bx-x"></i>
+          <div className="close-button" onClick={handleClose}>
+            <i className="bx bx-x bx-sm"></i>
           </div>
-          {props.children}
+          {children}
         </div>
       </div>
     </div>

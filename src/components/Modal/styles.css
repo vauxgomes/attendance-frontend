@@ -4,19 +4,23 @@
   left: 0;
   z-index: 1000;
 
-  visibility: hidden;
-  padding: 2em;
+  padding: 3em 0 0 0;
 
-  height: 100vh;
   width: 100vw;
+  max-height: 0vh;
 
   background: var(--bg-light);
+
+  visibility: hidden;
   opacity: 0;
 
   transition: all 0.3s ease;
 }
 
 .modal-container.show {
+  max-height: 1000vh;
+  min-height: 100%;
+
   visibility: visible;
   opacity: 1;
 }

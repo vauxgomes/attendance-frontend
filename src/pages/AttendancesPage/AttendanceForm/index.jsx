@@ -12,9 +12,9 @@ export default function AttendanceForm({
         <select
           name="class_id"
           className="form-select"
+          required={true}
           value={formData?.class_id || ''}
           onChange={(e) => handleFormChange(setFormData, e)}
-          required={true}
         >
           {formLists?.classes.map((c) => (
             <option key={c.id} value={c.id}>
@@ -29,9 +29,9 @@ export default function AttendanceForm({
           type="date"
           name="date"
           className="form-control"
+          required={true}
           value={formData?.date || new Date().toISOString().substring(0, 10)}
           onChange={(e) => handleFormChange(setFormData, e)}
-          required={true}
         />
       </div>
 
