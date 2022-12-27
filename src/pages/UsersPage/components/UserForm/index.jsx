@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { SubHeader } from '../../../../components/Header'
 
 import { handleFormChange } from '../../../../utils/forms'
 
@@ -7,8 +8,10 @@ export default function UserForm({ formData, setFormData, handleSubmit }) {
 
   return (
     <React.Fragment>
-      <h5 className="mb-0">User Information</h5>
-      <p className="small text-secondary">Fill the necessary information</p>
+      <SubHeader
+        title="User Information"
+        subtitle="Fill the necessary information"
+      />
 
       <form className="row" onSubmit={handleSubmit}>
         {/* Name */}

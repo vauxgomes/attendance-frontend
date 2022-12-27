@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import Topbar from './components/Topbar'
 import AttendancesPage from './pages/AttendancesPage'
+import CoursesPage from './pages/CoursesPage'
 import LoginPage from './pages/LoginPage'
 import UsersPage from './pages/UsersPage'
 import ContextProvider, { Context } from './providers/contexts/context'
@@ -25,6 +26,7 @@ function Organizer() {
       <div className="container py-3">
         <Routes>
           <Route path="/users" element={<UsersPage />} />
+          <Route path="/courses" element={<CoursesPage />} />
           <Route path="/attendances" element={<AttendancesPage />} />
         </Routes>
       </div>
