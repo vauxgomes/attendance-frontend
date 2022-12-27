@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 
 import ActionsDropdown from '../../../../components/ActionsDropdown'
 import SearchBar from '../../../../components/SearchBar'
-import StatusTag from '../../../../components/StatusTag'
 
-export default function UsersTable({
+export default function SubjectsTable({
   data,
   handleLoadForm,
   handleRemoveInstance
@@ -21,11 +20,8 @@ export default function UsersTable({
         <thead>
           <tr>
             <th></th>
-            <th>Name</th>
             <th>Code</th>
-            <th>User</th>
-            <th>Status</th>
-            <th>Roles</th>
+            <th>Name</th>
             <th></th>
           </tr>
         </thead>
@@ -36,18 +32,13 @@ export default function UsersTable({
               (u) =>
                 !search ||
                 u.name.toLowerCase().includes(search) ||
-                u.username.toLowerCase().includes(search)
+                u.code.includes(search)
             )
-            .map((user, key) => (
+            .map((o, key) => (
               <tr key={key}>
                 <td></td>
-                <td>{user.name}</td>
-                <td>{user.code}</td>
-                <td>{user.username}</td>
-                <td>
-                  <StatusTag status={user.status} />
-                </td>
-                <td className="text-capitalize">{user.role.toLowerCase()}</td>
+                <td>{o.code}</td>
+                <td>{o.name}</td>
                 <td>
                   <div className="d-flex align-items-center justify-content-end">
                     <ActionsDropdown
@@ -55,13 +46,13 @@ export default function UsersTable({
                         {
                           title: 'Edit',
                           icon: 'bx bxs-edit',
-                          callback: () => handleLoadForm(user),
+                          callback: () => handleLoadForm(o),
                           divider: true
                         },
                         {
                           title: 'Remove',
                           icon: 'bx bx-eraser',
-                          callback: () => handleRemoveInstance(user)
+                          callback: () => handleRemoveInstance(o)
                         }
                       ]}
                     />

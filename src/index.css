@@ -1,48 +1,58 @@
 :root {
-    --bg: #fff;
-    --bg-light: #f5f5f6;
+  --bg: #fff;
+  --bg-light: #f5f5f6;
 
-    --bg-dark: #0e1420;
-    --bg-dark-secondary: #213357;
+  --bg-dark: #0e1420;
+  --bg-dark-secondary: #213357;
 
-    --success-text: #188754;
-    --success-bg: #e8f3ed;
+  --success-text: #188754;
+  --success-bg: #e8f3ed;
 
-    --warning-text: #f2a018;
-    --warning-bg: #fef1d7;
+  --warning-text: #f2a018;
+  --warning-bg: #fef1d7;
 
-    --danger-text: #6c1d37;
-    --danger-bg: #fed4e2;
-    --danger-bg-secondary: #ef233c;
+  --danger-text: #6c1d37;
+  --danger-bg: #fed4e2;
+  --danger-bg-secondary: #ef233c;
 
-    --warning-text: #f2a018;
-    --warning-bg: #fef1d7;
+  --warning-text: #f2a018;
+  --warning-bg: #fef1d7;
 
-    --info-text: #704c9f;
-    --info-bg: #e5d5ff;
+  --info-text: #704c9f;
+  --info-bg: #e5d5ff;
 
-    --active-text: #091862;
-    --active-bg: #d8e4fe;
+  --active-text: #091862;
+  --active-bg: #d8e4fe;
 
-    --inactive-text: #969696;
-    --inactive-bg: #e8e8e8;
+  --inactive-text: #969696;
+  --inactive-bg: #e8e8e8;
 }
 
 body {
-    background: var(--bg);
+  background: var(--bg);
 }
 
 /* Customs */
 
 .table th {
-    padding-inline: 0.5em;
+  padding-inline: 0.5em;
 
-    color: var(--bs-secondary);
-    /* font-size: small; */
+  color: var(--bs-secondary);
+  /* font-size: small; */
 
-    background: var(--bg-light);
+  background: var(--bg-light);
 }
 
 .table td {
-    color: var(--bs-secondary);
+  color: var(--bs-secondary);
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                        supported by Chrome, Edge, Opera and Firefox */
 }

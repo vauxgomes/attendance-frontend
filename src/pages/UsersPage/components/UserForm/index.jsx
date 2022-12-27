@@ -3,7 +3,7 @@ import { SubHeader } from '../../../../components/Header'
 
 import { handleFormChange } from '../../../../utils/forms'
 
-export default function UserForm({ formData, setFormData, handleSubmit }) {
+export default function UserForm({ data, lists, setFormData, handleSubmit }) {
   const [show, setShow] = useState(false)
 
   return (
@@ -15,7 +15,7 @@ export default function UserForm({ formData, setFormData, handleSubmit }) {
 
       <form className="row" onSubmit={handleSubmit}>
         {/* Name */}
-        <div className="col-12 mb-2">
+        <div className="col-12 col-md-6 mb-2">
           <label htmlFor="name" className="form-label">
             Name
           </label>
@@ -25,13 +25,29 @@ export default function UserForm({ formData, setFormData, handleSubmit }) {
             type="text"
             className="form-control"
             required={true}
-            value={formData?.name || ''}
+            value={data?.name || ''}
+            onChange={(e) => handleFormChange(setFormData, e)}
+          />
+        </div>
+
+        {/* Code */}
+        <div className="col-12 col-md-6 mb-2">
+          <label htmlFor="code" className="form-label">
+            Code
+          </label>
+          <input
+            id="code"
+            name="code"
+            type="text"
+            className="form-control"
+            required={true}
+            value={data?.code || ''}
             onChange={(e) => handleFormChange(setFormData, e)}
           />
         </div>
 
         {/* Username */}
-        <div className="col-12 col-md-6  mb-2">
+        <div className="col-12 col-md-6 mb-2">
           <label htmlFor="username" className="form-label">
             Username
           </label>
@@ -43,7 +59,7 @@ export default function UserForm({ formData, setFormData, handleSubmit }) {
             min={5}
             max={20}
             required={true}
-            value={formData?.username || ''}
+            value={data?.username || ''}
             onChange={(e) => handleFormChange(setFormData, e)}
           />
         </div>
@@ -61,8 +77,8 @@ export default function UserForm({ formData, setFormData, handleSubmit }) {
               type={show ? 'text' : 'password'}
               className="form-control"
               min={5}
-              required={!formData?.id}
-              value={formData?.password || ''}
+              required={!data?.id}
+              value={data?.password || ''}
               onChange={(e) => handleFormChange(setFormData, e)}
             />
 
@@ -85,14 +101,17 @@ export default function UserForm({ formData, setFormData, handleSubmit }) {
             name="status"
             className="form-select"
             required={true}
-            value={formData?.status || ''}
+            value={data?.status || ''}
             onChange={(e) => handleFormChange(setFormData, e)}
           >
-            <option value="" disabled={formData?.status}>
+            <option value="" disabled={data?.status}>
               Choose
             </option>
-            <option value="ACTIVE">Active</option>
-            <option value="INACTIVE">Inactive</option>
+            {lists.statuses.map((o, key) => (
+              <option key={key} value={o.value}>
+                {o.title}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -106,10 +125,10 @@ export default function UserForm({ formData, setFormData, handleSubmit }) {
             name="role"
             className="form-select"
             required={true}
-            value={formData?.role || ''}
+            value={data?.role || ''}
             onChange={(e) => handleFormChange(setFormData, e)}
           >
-            <option value="" disabled={formData?.role}>
+            <option value="" disabled={data?.role}>
               Choose
             </option>
             <option value="ROOT">Root</option>

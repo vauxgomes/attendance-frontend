@@ -8,6 +8,7 @@ import AttendancesPage from './pages/AttendancesPage'
 import CoursesPage from './pages/CoursesPage'
 import LoginPage from './pages/LoginPage'
 import StudentsPage from './pages/StudentsPage'
+import SubjectsPage from './pages/SubjectsPage'
 import UsersPage from './pages/UsersPage'
 import ContextProvider, { Context } from './providers/contexts/context'
 
@@ -29,6 +30,7 @@ function Organizer() {
           <Route path="/users" element={<UsersPage />} />
           <Route path="/courses" element={<CoursesPage />} />
           <Route path="/students" element={<StudentsPage />} />
+          <Route path="/subjects" element={<SubjectsPage />} />
           <Route path="/attendances" element={<AttendancesPage />} />
         </Routes>
       </div>

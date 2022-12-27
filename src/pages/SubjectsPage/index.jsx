@@ -5,28 +5,16 @@ import Modal from '../../components/Modal'
 import { Context } from '../../providers/contexts/context'
 import api from '../../providers/services/api'
 import formReducer from '../../utils/forms'
-import UserForm from './components/UserForm'
-import UsersTable from './components/UsersTable'
+import SubjectsForm from './components/SubjectsForm'
+import SubjectsTable from './components/SubjectsTable'
 
-export default function UsersPage() {
+export default function SubjectsPage() {
   const { token } = useContext(Context)
-
-  const formLists = {
-    statuses: [
-      { title: 'Active', value: 'ACTIVE' },
-      { title: 'Inactive', value: 'INACTIVE' }
-    ],
-    roles: [
-      { title: 'Root', value: 'ROOT' },
-      { title: 'Super', value: 'SUPER' },
-      { title: 'Administrator', value: 'ADMIN' },
-      { title: 'User', value: 'USER' }
-    ]
-  }
+  const [formData, setFormData] = useReducer(formReducer)
 
   const [show, setShow] = useState(false)
-  const [users, setUsers] = useState([])
-  const [formData, setFormData] = useReducer(formReducer)
+  const [courses, setCourses] = useState()
+  const [subjects, setSubjects] = useState([])
 
   useEffect(() => {
     if (!token) {
@@ -35,9 +23,20 @@ export default function UsersPage() {
 
     api
       .token(token)
-      .getUsers()
-      .then((response) => setUsers(response))
+      .getLovsCourses()
+      .then((response) => setCourses(response))
   }, [token])
+
+  useEffect(() => {
+    if (!formData?.course_id) {
+      return
+    }
+
+    api
+      .token(token)
+      .getSubjects(formData.course_id)
+      .then((response) => setSubjects(response))
+  }, [formData?.course_id])
 
   const handleLoadForm = (data) => {
     setFormData({ reset: true, states: { ...data } })
@@ -53,13 +52,13 @@ export default function UsersPage() {
 
     if (formData.id) {
       api
-        .putUser(formData.id, formData)
+        .putSubject(formData.course_id, formData.id, formData)
         .then((response) => {
-          const idx = users.findIndex((i) => i.id === formData.id)
-          const copy = [...users]
+          const idx = subjects.findIndex((i) => i.id === formData.id)
+          const copy = [...subjects]
           copy[idx] = formData
 
-          setUsers(copy)
+          setSubjects(copy)
         })
         .finally(() => {
           handleResetForm()
@@ -67,10 +66,10 @@ export default function UsersPage() {
         })
     } else {
       api
-        .postUser(formData)
+        .postSubject(formData.course_id, formData)
         .then((response) => {
           formData.id = response.id
-          setUsers((prev) => [formData, ...prev])
+          setSubjects((prev) => [formData, ...prev])
         })
         .finally(() => {
           handleResetForm()
@@ -79,24 +78,24 @@ export default function UsersPage() {
     }
   }
 
-  const handleRemoveInstance = ({ id }) => {
+  const handleRemoveInstance = ({ course_id, id }) => {
     if (!id) {
       return
     }
 
-    api.deleteUser(id).then((response) => {
+    api.deleteSubject(course_id, id).then((response) => {
       if (!response.success) {
         return
       }
 
-      setUsers((prev) => prev.filter((i) => i.id !== id))
+      setSubjects((prev) => prev.filter((i) => i.id !== id))
     })
   }
 
   return (
     <React.Fragment>
       {/* Header */}
-      <Header title="Users" subtitle="Manage users and permissions">
+      <Header title="Subjects" subtitle="Classes' subjects">
         <button
           className="btn btn-sm btn-primary d-flex align-items-center gap-1"
           onClick={() => setShow(true)}
@@ -107,8 +106,8 @@ export default function UsersPage() {
       </Header>
 
       {/* Table */}
-      <UsersTable
-        data={users}
+      <SubjectsTable
+        data={subjects}
         handleLoadForm={handleLoadForm}
         handleRemoveInstance={handleRemoveInstance}
       />
@@ -121,9 +120,8 @@ export default function UsersPage() {
           setShow(false)
         }}
       >
-        <UserForm
-          data={formData}
-          lists={formLists}
+        <SubjectsForm
+          formData={formData}
           setFormData={setFormData}
           handleSubmit={handleSubmitForm}
         />

@@ -35,6 +35,13 @@ class API {
     return response.data
   }
 
+  /** LOVS */
+
+  async getLovsCourses() {
+    const response = await this.api.get('/lovs/courses', this.config)
+    return response.data
+  }
+
   /** USERS */
 
   async getUsers(page) {
