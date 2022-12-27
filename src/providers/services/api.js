@@ -50,7 +50,7 @@ class API {
     return response.data
   }
 
-  async putUser(id, user) {
+  async putStudent(id, user) {
     const response = await this.api.put(
       `/users/${id}/update`,
       user,

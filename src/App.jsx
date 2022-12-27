@@ -7,6 +7,7 @@ import Topbar from './components/Topbar'
 import AttendancesPage from './pages/AttendancesPage'
 import CoursesPage from './pages/CoursesPage'
 import LoginPage from './pages/LoginPage'
+import StudentsPage from './pages/StudentsPage'
 import UsersPage from './pages/UsersPage'
 import ContextProvider, { Context } from './providers/contexts/context'
 
@@ -27,6 +28,7 @@ function Organizer() {
         <Routes>
           <Route path="/users" element={<UsersPage />} />
           <Route path="/courses" element={<CoursesPage />} />
+          <Route path="/students" element={<StudentsPage />} />
           <Route path="/attendances" element={<AttendancesPage />} />
         </Routes>
       </div>

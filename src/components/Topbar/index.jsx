@@ -35,6 +35,20 @@ export default function Topbar() {
               </li>
               <li>
                 <NavLink
+                  to="/students"
+                  className="d-flex gap-2 align-items-start"
+                >
+                  <i className="bx bx-group text-secondary py-1"></i>
+                  <div className="d-flex flex-column">
+                    <span>Students</span>
+                    <small className="d-none d-sm-block text-secondary">
+                      Students management
+                    </small>
+                  </div>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
                   to="/courses"
                   className="d-flex gap-2 align-items-start"
                 >
@@ -57,20 +71,6 @@ export default function Topbar() {
                     <span>Subjects</span>
                     <small className="d-none d-sm-block text-secondary">
                       Subjects management
-                    </small>
-                  </div>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/students"
-                  className="d-flex gap-2 align-items-start"
-                >
-                  <i className="bx bx-group text-secondary py-1"></i>
-                  <div className="d-flex flex-column">
-                    <span>Students</span>
-                    <small className="d-none d-sm-block text-secondary">
-                      Students management
                     </small>
                   </div>
                 </NavLink>
