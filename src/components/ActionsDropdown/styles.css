@@ -24,7 +24,9 @@
 
   color: var(--bs-secondary);
   width: 100%;
-  padding: 0.08em;
+  padding: 0.25em 0.1rem;
+
+  border: 1px solid transparent;
   border-radius: 4px;
 }
 
@@ -38,6 +40,7 @@
 .action-dropdown li:focus-within {
   color: black;
   background-color: #e9ecef;
+  border: 1px solid rgba(0, 0, 0, 0.175);
 }
 
 .action-dropdown li ul {

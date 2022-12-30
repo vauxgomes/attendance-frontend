@@ -37,9 +37,9 @@
   --badge-bg: var(--warning-bg);
 }
 
-.badge-info {
-  --badge-text: var(--info-text);
-  --badge-bg: var(--info-bg);
+.badge-pending {
+  --badge-text: var(--pending-text);
+  --badge-bg: var(--pending-bg);
 }
 
 .badge-active {

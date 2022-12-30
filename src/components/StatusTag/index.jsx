@@ -1,12 +1,12 @@
 import './styles.css'
 
-export const status = {
+export const statuses = {
   ACTIVE: 'ACTIVE',
   INACTIVE: 'INACTIVE',
   SUCCESS: 'SUCCESS',
   DANGER: 'DANGER',
   WARNING: 'WARNING',
-  INFO: 'INFO'
+  PENDING: 'PENDING'
 }
 
 export default function StatusTag({ status, text = '' }) {

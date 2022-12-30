@@ -37,8 +37,23 @@ class API {
 
   /** LOVS */
 
-  async getLovsCourses() {
-    const response = await this.api.get('/lovs/courses', this.config)
+  async getUsersList() {
+    const response = await this.api.get('/users/list', this.config)
+    return response.data
+  }
+
+  async getStudentsList() {
+    const response = await this.api.get('/students/list', this.config)
+    return response.data
+  }
+
+  async getCoursesList() {
+    const response = await this.api.get('/courses/list', this.config)
+    return response.data
+  }
+
+  async getSubjectsList() {
+    const response = await this.api.get('/subjects/list', this.config)
     return response.data
   }
 
@@ -57,7 +72,7 @@ class API {
     return response.data
   }
 
-  async putStudent(id, user) {
+  async putUser(id, user) {
     const response = await this.api.put(
       `/users/${id}/update`,
       user,
@@ -202,7 +217,17 @@ class API {
 
   async deleteClass(subject_id, id) {
     const response = await this.api.delete(
-      `/subjects/${course_id}/classes/${id}/delete`,
+      `/subjects/${subject_id}/classes/${id}/delete`,
+      this.config
+    )
+    return response.data
+  }
+
+  /** USER-CLASSES */
+
+  async getUserClasses(page) {
+    const response = await this.api.get(
+      `/classes?${this.params({ page })}`,
       this.config
     )
     return response.data
@@ -237,17 +262,9 @@ class API {
 
   /** ATTENDANCES **/
 
-  async getAttendances(class_id, page) {
+  async getAttendances(class_id, date) {
     const response = await this.api.get(
-      `/classes/${class_id}/attendances?${this.params({ page })}`,
-      this.config
-    )
-    return response.data
-  }
-
-  async getAttendances(class_id, class_date) {
-    const response = await this.api.get(
-      `/classes/${class_id}/${class_date}/attendances/detail`,
+      `/classes/${class_id}/attendances/${date}`,
       this.config
     )
     return response.data
@@ -274,6 +291,30 @@ class API {
   async deleteAttendance(class_id, student_id) {
     const response = await this.api.delete(
       `/classes/${class_id}/attendances/${student_id}/delete`,
+      this.config
+    )
+    return response.data
+  }
+
+  /** FAVORITES **/
+
+  async getFavorites() {
+    const response = await this.api.get(`/favorites`, this.config)
+    return response.data
+  }
+
+  async postFavorite(aClass) {
+    const response = await this.api.post(
+      `/favorites/create`,
+      aClass,
+      this.config
+    )
+    return response.data
+  }
+
+  async deleteFavorite(class_id) {
+    const response = await this.api.delete(
+      `/favorites/${class_id}/delete`,
       this.config
     )
     return response.data

@@ -83,8 +83,7 @@
 /* #topbar ul li:hover > ul, */
 #topbar ul li:focus-within > ul,
 /* #topbar ul li ul:hover, */
-#topbar ul li ul:focus
- {
+#topbar ul li ul:focus {
   visibility: visible;
   opacity: 1;
   /* display: block; */
@@ -122,8 +121,8 @@
   }
 }
 
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
   #topbar ul li ul {
     grid-template-columns: repeat(4, 1fr);
   }
-}
+} */

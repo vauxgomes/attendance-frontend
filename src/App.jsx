@@ -4,16 +4,19 @@ import React, { useContext, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import Topbar from './components/Topbar'
-import AttendancesPage from './pages/AttendancesPage'
-import CoursesPage from './pages/CoursesPage'
+import FavoriteClassesPage from './pages/FavoriteClassesPage'
 import LoginPage from './pages/LoginPage'
-import StudentsPage from './pages/StudentsPage'
-import SubjectsPage from './pages/SubjectsPage'
-import UsersPage from './pages/UsersPage'
+import ClassesPage from './pages/SettingsPages/ClassesPage'
+import CoursesPage from './pages/SettingsPages/CoursesPage'
+import StudentsPage from './pages/SettingsPages/StudentsPage'
+import SubjectsPage from './pages/SettingsPages/SubjectsPage'
+import UsersPage from './pages/SettingsPages/UsersPage'
+import AttendancesPage from './pages/TeachersPages/AttendancesPage'
+import TeacherClassesPage from './pages/TeachersPages/TeacherClassesPage'
 import ContextProvider, { Context } from './providers/contexts/context'
 
 function Organizer() {
-  const { token } = useContext(Context)
+  const { token, info } = useContext(Context)
 
   if (!token) {
     return <LoginPage />
@@ -27,11 +30,27 @@ function Organizer() {
       {/* Pages */}
       <div className="container py-3">
         <Routes>
-          <Route path="/users" element={<UsersPage />} />
-          <Route path="/courses" element={<CoursesPage />} />
-          <Route path="/students" element={<StudentsPage />} />
-          <Route path="/subjects" element={<SubjectsPage />} />
-          <Route path="/attendances" element={<AttendancesPage />} />
+          <Route path="/" element={<FavoriteClassesPage />} />
+
+          {['ROOT'].includes(info.role) && (
+            <React.Fragment>
+              <Route path="/users" element={<UsersPage />} />
+              <Route path="/courses" element={<CoursesPage />} />
+              <Route path="/students" element={<StudentsPage />} />
+              <Route path="/subjects" element={<SubjectsPage />} />
+              <Route path="/classes" element={<ClassesPage />} />
+            </React.Fragment>
+          )}
+
+          {['USER'].includes(info.role) && (
+            <React.Fragment>
+              <Route path="/classes" element={<TeacherClassesPage />} />
+              <Route
+                path="/attendances/:class_id"
+                element={<AttendancesPage />}
+              />
+            </React.Fragment>
+          )}
         </Routes>
       </div>
     </React.Fragment>

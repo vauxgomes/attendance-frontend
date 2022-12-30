@@ -28,6 +28,8 @@
 .modal-content {
   position: relative;
   top: -50px;
+  
+  max-height: 90vh;
   padding: 1em;
 
   background: var(--bg);

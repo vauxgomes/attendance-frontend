@@ -1,0 +1,27 @@
+.favorites {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1em;
+}
+
+.favorites .card {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border: none;
+}
+
+.favorites i.star {
+  cursor: pointer;
+  color: #f3d261;
+  transition: all 0.3s ease;
+}
+
+.favorites i.star:hover {
+  -webkit-text-stroke: 1px #282828;
+  text-shadow: 0px 4px 4px #282828;
+}
+
+@media (min-width: 992px) {
+  .favorites {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

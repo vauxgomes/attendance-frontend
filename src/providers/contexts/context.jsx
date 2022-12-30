@@ -6,12 +6,13 @@ export const Context = createContext()
 
 export default function ContextProvider({ children }) {
   const [token, setToken] = useState(localStorage.getItem('token') || '')
-
-  const [name, setName] = useState('')
-  const [role, setRole] = useState('')
+  const [name, setName] = useState(localStorage.getItem('name') || '')
+  const [role, setRole] = useState(localStorage.getItem('role') || '')
 
   const handleLogin = ({ token }) => {
     const payload = parseJwt(token)
+
+    console.log(payload)
 
     setToken(token)
     setName(payload.name)

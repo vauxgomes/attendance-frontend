@@ -7,7 +7,6 @@ export default function ActionsDropdown({ actions, children }) {
 
   const callAction = (callback) => {
     setShow(false)
-
     if (callback) callback()
   }
 
@@ -26,7 +25,7 @@ export default function ActionsDropdown({ actions, children }) {
                 <React.Fragment key={key}>
                   <li
                     onClick={() => callAction(action.callback)}
-                    className={!action?.callback ? 'disabled' : ''}
+                    className={!action?.callback ? 'disabled noselect' : ''}
                   >
                     <span>{action.title}</span>
                     {action?.icon && <i className={action.icon}></i>}
