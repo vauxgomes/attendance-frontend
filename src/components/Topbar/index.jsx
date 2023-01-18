@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom'
 
 import { Context } from '../../providers/contexts/context'
 
+import logo from '/img/logo-arrow.svg'
+
 const menus = [
   {
     title: 'Users',
@@ -49,6 +51,7 @@ const menus = [
     roles: ['ROOT', 'USER']
   }
 ]
+
 export default function Topbar() {
   const { info, handleLogout } = useContext(Context)
 
@@ -56,7 +59,7 @@ export default function Topbar() {
     <header id="topbar">
       <div className="topbar container">
         <NavLink to="/">
-          <img src="/img/logo-arrow.svg" className="logo" />
+          <img src={logo} className="logo" />
         </NavLink>
 
         <ul>
