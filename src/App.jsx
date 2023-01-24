@@ -30,8 +30,6 @@ function Organizer() {
       {/* Pages */}
       <div className="container py-3">
         <Routes>
-          <Route path="/" element={<FavoriteClassesPage />} />
-
           {['ROOT'].includes(info.role) && (
             <React.Fragment>
               <Route path="/users" element={<UsersPage />} />
@@ -51,6 +49,8 @@ function Organizer() {
               />
             </React.Fragment>
           )}
+          
+          <Route path="*" element={<FavoriteClassesPage />} />
         </Routes>
       </div>
     </React.Fragment>
